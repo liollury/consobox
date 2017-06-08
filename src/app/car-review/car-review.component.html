@@ -1,0 +1,36 @@
+<div class="main-info">
+  <span class="title">Prochaine révision</span>
+  <div>
+    <span class="large">Filtre à air</span>
+  </div>
+  <span class="trend great">dans 2mois ou 2000Km</span>
+</div>
+
+<md-list>
+  <div *ngFor="let category of reviewCategories">
+    <md-divider></md-divider>
+    <h3 md-subheader>{{category.name}}</h3>
+    <div class="circle-container">
+      <div *ngFor="let review of reviewsMap.get(category)" class="item">
+        <!-- http://www.cssscript.com/demo/pure-css-circular-percentage-bar/ -->
+        <span class="circle-info">{{getReviewType(category, review).name}}</span>
+        <div class="c100 p82">
+          <span class="icon">
+            <md-icon md-list-icon>{{category.icon}}</md-icon>
+
+          </span>
+          <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
+          </div>
+        </div>
+        <span class="circle-info">5436Km</span>
+      </div>
+    </div>
+    <!--md-list-item *ngFor="let review of reviewsMap.get(category)">
+      <md-icon md-list-icon>{{category.icon}}</md-icon>
+      <h4 md-line>{{getReviewType(category, review).name}}</h4>
+      <p md-line>Tous les {{review.mileage}}km ou les {{review.interval}}mois </p>
+    </md-list-item-->
+  </div>
+</md-list>

@@ -19,6 +19,7 @@ import { CarTabsComponent } from './car-tabs/car-tabs.component';
 import { CarConsoComponent } from './car-conso/car-conso.component';
 import {RoundPipe} from './share/round-filter/round.filter';
 import {MomentModule} from 'angular2-moment';
+import { CarReviewComponent } from './car-review/car-review.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MomentModule} from 'angular2-moment';
     CarFabComponent,
     CarTabsComponent,
     CarConsoComponent,
-    RoundPipe
+    RoundPipe,
+    CarReviewComponent
   ],
   imports: [
     BrowserModule,
