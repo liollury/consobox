@@ -1,0 +1,49 @@
+.main-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    font-size: 1.3em;
+  }
+
+  .large {
+    font-size: 1.8em;
+    font-weight: bold;
+  }
+
+  .medium {
+    font-size: 0.9em;
+    color: gray;
+  }
+
+  span {
+    margin: 10px 0;
+    &.warning {
+      color: red;
+    }
+
+    &.great {
+      color: green;
+    }
+  }
+}
+
+
+chart {
+  display: block;
+
+}
+@media screen and (max-width: 1024px) {
+  chart {
+    height: 250px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  chart {
+    height: 400px;
+    margin: 10px;
+  }
+}
+

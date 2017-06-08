@@ -17,6 +17,8 @@ import * as highcharts from 'highcharts';
 import { CarFabComponent } from './car-fab/car-fab.component';
 import { CarTabsComponent } from './car-tabs/car-tabs.component';
 import { CarConsoComponent } from './car-conso/car-conso.component';
+import {RoundPipe} from './share/round-filter/round.filter';
+import {MomentModule} from 'angular2-moment';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { CarConsoComponent } from './car-conso/car-conso.component';
     CarSummaryComponent,
     CarFabComponent,
     CarTabsComponent,
-    CarConsoComponent
+    CarConsoComponent,
+    RoundPipe
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { CarConsoComponent } from './car-conso/car-conso.component';
     MdSidenavModule,
     MdListModule,
     MdTabsModule,
+    MomentModule,
     ConsoboxShareModule,
     ChartModule.forRoot(highcharts),
     RouterModule.forRoot(AppRoutes)

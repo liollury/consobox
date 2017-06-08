@@ -15,3 +15,10 @@ body {
 * {
   font-family: Roboto,"Helvetica Neue",sans-serif;
 }
+
+
+.mat-list .mat-list-item .mat-list-text h4.title {
+  color: gray;
+  font-size: 0.8em;
+  margin-bottom: 5px;
+}

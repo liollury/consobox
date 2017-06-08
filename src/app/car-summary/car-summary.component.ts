@@ -6,7 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-car-summary',
   templateUrl: './car-summary.component.html',
-  styleUrls: ['./car-summary.component.css']
+  styleUrls: ['./car-summary.component.scss']
 })
 export class CarSummaryComponent implements OnInit {
   @Input() car: Car;

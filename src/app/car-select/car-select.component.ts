@@ -6,7 +6,7 @@ import {Observable} from 'rxjs/Observable';
 @Component({
   selector: 'app-car-select',
   templateUrl: './car-select.component.html',
-  styleUrls: ['./car-select.component.css'],
+  styleUrls: ['./car-select.component.scss'],
   providers: [
     CarsService
   ]
