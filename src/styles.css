@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+@media screen and (min-width: 1024px) {
+  body {
+    padding: 2em 23em;
+  }
+}
+
+body {
+  background:lightgray;
+}
+
+* {
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}

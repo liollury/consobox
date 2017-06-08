@@ -1,0 +1,8 @@
+.car-card {
+  margin: 20px 10px;
+}
+
+.car-card-icon {
+  background-image: url('../../assets/images/car_icon.jpg');
+  background-size: cover;
+}

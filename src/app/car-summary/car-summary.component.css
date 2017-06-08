@@ -1,0 +1,58 @@
+.main-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-info .title {
+  font-size: 1.3em;
+}
+
+.main-info .large {
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+.main-info .medium {
+  font-size: 0.9em;
+  color: gray;
+}
+
+.main-info span {
+  margin: 10px 0;
+}
+
+span.warning {
+  color: red;
+}
+
+span.great {
+  color: green;
+}
+
+md-list h4.title {
+  color: gray;
+  font-size: 0.8em;
+  margin-bottom: 5px;
+}
+
+chart {
+  display: block;
+
+}
+@media screen and (max-width: 1024px) {
+  chart {
+    height: 250px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  chart {
+    height: 400px;
+    margin: 10px;
+  }
+}
+
+:host >>> chart .highcharts-container {
+
+}
