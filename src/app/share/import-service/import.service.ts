@@ -20,7 +20,7 @@ export class ImportService {
       }
     }
     return this.authService.getUserDbObject().subscribe((userRef: firebase.database.Reference) => {
-      userRef.child(`cars/${carId}/conso`).set(consos);
+      userRef.child(`cars/${carId}/consommations`).set(consos);
     });
   }
 

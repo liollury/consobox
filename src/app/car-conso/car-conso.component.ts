@@ -13,12 +13,11 @@ import {Conso} from '../share/models/conso.interface';
 })
 export class CarConsoComponent implements OnInit {
   @Input() car: Car;
-  consos: Array<Conso>;
 
-  constructor(private consoService: ConsoService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.consoService.getConso(this.car[CAR_ID_SYM]).subscribe(value => this.consos = value);
+    this.car.consommations.sort((consoA: Conso, consoB: Conso) => consoB.date - consoA.date);
   }
 
 }
