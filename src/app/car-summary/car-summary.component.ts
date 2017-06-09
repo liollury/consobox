@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CommonService} from '../share/common-service/common.service';
 import {Notification, NotificationType} from '../share/models/notification.class';
 import {ImportService} from '../share/import-service/import.service';
+import {Conso} from '../share/models/conso.interface';
 
 @Component({
   selector: 'app-car-summary',
@@ -59,6 +60,10 @@ export class CarSummaryComponent implements OnInit {
 
   setChart(chartInstance) {
     this.chart = chartInstance;
+  }
+
+  getConsoAverage() {
+    return this.car.consommations.reduce((acc: number, current: Conso) => acc + (current.volume * 100 / current.mileage), 0) / this.car.consommations.length;
   }
 
 }
