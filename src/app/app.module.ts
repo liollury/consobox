@@ -7,7 +7,7 @@ import {
 } from '@angular/material';
 import { AppComponent } from './app.component';
 import { CarSelectComponent } from './car-select/car-select.component';
-import {AppRoutes, CarResolver} from './app.route';
+import {AppRoutes} from './app.route';
 import {ConsoboxShareModule} from './share/consobox-share.module';
 import { CarSummaryComponent } from './car-summary/car-summary.component';
 import {CarsService} from './share/cars-service/cars.service';
@@ -26,6 +26,12 @@ import {environment} from '../environments/environment';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AuthGuard} from './share/auth-service/auth-guard.service';
+import {AuthService} from './share/auth-service/auth.service';
+import { LoginComponent } from './login/login.component';
+import {CarResolver} from './resolves/car.resolver';
+import {FuelResolver} from './resolves/fuel.resolver';
+import {FuelService} from './share/fuel-service/fuel.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +43,8 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
     CarConsoComponent,
     RoundPipe,
     CarReviewComponent,
-    CarSpendComponent
+    CarSpendComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +65,17 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
     AngularFireAuthModule,
     AngularFireDatabaseModule
   ],
-  providers: [CarsService, CarResolver, CommonService],
+  providers: [
+    /** Resolvers **/
+    CarResolver,
+    FuelResolver,
+    /** Services **/
+    CarsService,
+    CommonService,
+    AuthService,
+    FuelService,
+    /** Others **/
+    AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

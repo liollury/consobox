@@ -1,21 +1,9 @@
 import {CarSelectComponent} from './car-select/car-select.component';
-import {CarsService} from './share/cars-service/cars.service';
-import {CarSummaryComponent} from './car-summary/car-summary.component';
-import {Observable} from 'rxjs/Observable';
-import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
-import {Car} from './share/models/cars.interface';
-import {Injectable} from '@angular/core';
 import {CarTabsComponent} from './car-tabs/car-tabs.component';
-
-@Injectable()
-export class CarResolver implements Resolve<Car> {
-  constructor(private carsService: CarsService) { }
-
-  resolve(route: ActivatedRouteSnapshot): Observable<Car> {
-    return this.carsService.getCar(route.params.carId);
-  }
-}
-
+import {AuthGuard} from './share/auth-service/auth-guard.service';
+import {LoginComponent} from './login/login.component';
+import {FuelResolver} from './resolves/fuel.resolver';
+import {CarResolver} from './resolves/car.resolver';
 
 export const carSelect = {
   path : '',
@@ -36,10 +24,22 @@ export const carRoot = {
   children: [
     carSelect,
     carSummary
-  ]
+  ],
+  canActivate: [
+    AuthGuard
+  ],
+  resolve: {
+    fuels: FuelResolver
+  }
+};
+
+export const login = {
+  path: 'login',
+  component: LoginComponent,
 };
 
 
 
 
-export const AppRoutes = [carRoot];
+
+export const AppRoutes = [carRoot, login];

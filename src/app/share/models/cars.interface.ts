@@ -1,4 +1,4 @@
-import {FUEL} from './fuel.enum';
+
 export class Car {
   id: number;
   name: string;
@@ -6,5 +6,5 @@ export class Car {
   model: string;
   body: string;
   mileage: number;
-  fuel: FUEL
+  fuel: number;
 }

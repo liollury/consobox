@@ -1,4 +1,3 @@
-import {FUEL} from './fuel.enum';
 export interface ReviewCategory {
   id: number;
   name: string;
@@ -11,7 +10,7 @@ export interface ReviewType {
   name: string;
   fuel: [
       {
-        type: FUEL;
+        type: number;
         mileage: number;
         interval: number;
       }

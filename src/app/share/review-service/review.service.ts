@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import {Review, ReviewCategory} from '../models/review.interface';
 import {Observable} from 'rxjs/Observable';
-import {FUEL} from '../models/fuel.enum';
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 
 @Injectable()
 export class ReviewService {
   reviewCategoryTypeMock: Array<ReviewCategory>;
   reviewsMock: Array<Review>;
 
-  constructor() {
+  items: FirebaseListObservable<any[]>;
+  constructor(private db: AngularFireDatabase) {
     this.reviewCategoryTypeMock = [
       {
         id     : 0,
@@ -20,7 +21,7 @@ export class ReviewService {
             name: 'Filtre à huile',
             fuel: [
               {
-                type    : FUEL.GASOLINE,
+                type    : 0,
                 mileage : 10000,
                 interval: 24
               }
@@ -31,7 +32,7 @@ export class ReviewService {
             name: 'Filtre à air',
             fuel: [
               {
-                type    : FUEL.GASOLINE,
+                type    : 0,
                 mileage : 12000,
                 interval: 12
               }
@@ -49,7 +50,7 @@ export class ReviewService {
             name: 'Huile',
             fuel: [
               {
-                type    : FUEL.GASOLINE,
+                type    : 0,
                 mileage : 10000,
                 interval: 24
               }
@@ -60,7 +61,7 @@ export class ReviewService {
             name: 'Liquide de freins',
             fuel: [
               {
-                type    : FUEL.GASOLINE,
+                type    : 0,
                 mileage : 12000,
                 interval: 12
               }
