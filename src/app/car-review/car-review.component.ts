@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Car} from '../share/models/cars.interface';
+import {Car, CAR_ID_SYM} from '../share/models/cars.interface';
 import {ReviewService} from '../share/review-service/review.service';
 import {Review, ReviewCategory, ReviewType} from '../share/models/review.interface';
 import "rxjs/add/operator/mergeMap";
@@ -22,7 +22,7 @@ export class CarReviewComponent implements OnInit {
   ngOnInit() {
     this.reviewService.getAllReviewsCategoryType().flatMap((revCats: Array<ReviewCategory>) => {
       this.reviewCategories = revCats;
-      return this.reviewService.getReviews(this.car.id);
+      return this.reviewService.getReviews(this.car[CAR_ID_SYM]);
     }).subscribe((revs: Array<Review>) => {
       this.reviewsMap = new Map();
       for (const review of revs) {

@@ -10,66 +10,6 @@ export class ReviewService {
 
   items: FirebaseListObservable<any[]>;
   constructor(private db: AngularFireDatabase) {
-    this.reviewCategoryTypeMock = [
-      {
-        id     : 0,
-        name   : 'Filtration',
-        icon   : 'build',
-        reviews: [
-          {
-            id  : 0,
-            name: 'Filtre à huile',
-            fuel: [
-              {
-                type    : 0,
-                mileage : 10000,
-                interval: 24
-              }
-            ]
-          },
-          {
-            id  : 1,
-            name: 'Filtre à air',
-            fuel: [
-              {
-                type    : 0,
-                mileage : 12000,
-                interval: 12
-              }
-            ]
-          }
-        ]
-      },
-      {
-        id     : 1,
-        name   : 'Vidanges',
-        icon   : 'build',
-        reviews: [
-          {
-            id  : 0,
-            name: 'Huile',
-            fuel: [
-              {
-                type    : 0,
-                mileage : 10000,
-                interval: 24
-              }
-            ]
-          },
-          {
-            id  : 1,
-            name: 'Liquide de freins',
-            fuel: [
-              {
-                type    : 0,
-                mileage : 12000,
-                interval: 12
-              }
-            ]
-          }
-        ]
-      }
-    ];
 
     this.reviewsMock = [
       {
@@ -100,7 +40,7 @@ export class ReviewService {
   }
 
   getAllReviewsCategoryType(): Observable<Array<ReviewCategory>> {
-    return Observable.of(this.reviewCategoryTypeMock);
+    return this.db.list('/reviewCategories');
   }
 
   getReviews(carId: number): Observable<Array<Review>> {

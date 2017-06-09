@@ -9,6 +9,6 @@ export class CarResolver implements Resolve<Car> {
   constructor(private carsService: CarsService) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<Car> {
-    return this.carsService.getCar(route.params.carId);
+    return this.carsService.getCar(route.params.carId).first();
   }
 }

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Car} from '../share/models/cars.interface';
+import {Car, CAR_ID_SYM} from '../share/models/cars.interface';
 import {ConsoService} from '../share/conso-service/conso.service';
 import {Conso} from '../share/models/conso.interface';
 
@@ -18,7 +18,7 @@ export class CarConsoComponent implements OnInit {
   constructor(private consoService: ConsoService) { }
 
   ngOnInit() {
-    this.consoService.getConso(this.car.id).subscribe(value => this.consos = value);
+    this.consoService.getConso(this.car[CAR_ID_SYM]).subscribe(value => this.consos = value);
   }
 
 }

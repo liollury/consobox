@@ -11,12 +11,12 @@
 <md-list>
   <md-list-item>
     <h4 class="title" md-line>Kilomètrage</h4>
-    <p class="list-item" md-line>156423.4Km</p>
+    <p class="list-item" md-line>{{car.mileage | round:2}}Km</p>
   </md-list-item>
   <md-divider></md-divider>
   <md-list-item>
     <h4 class="title" md-line>Type de carburant</h4>
-    <p class="list-item" md-line>Essence</p>
+    <p class="list-item text-capitalize" md-line>{{'fuel.' + car.fuel.label | translate}}</p>
   </md-list-item>
   <md-divider></md-divider>
   <md-list-item>

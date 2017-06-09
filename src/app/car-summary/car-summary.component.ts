@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CommonService} from '../share/common-service/common.service';
 import {Notification, NotificationType} from '../share/models/notification.class';
+import {ImportService} from '../share/import-service/import.service';
 
 @Component({
   selector: 'app-car-summary',
@@ -19,7 +20,6 @@ export class CarSummaryComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.options = {
       title : {
         text : null

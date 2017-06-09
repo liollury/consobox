@@ -5,3 +5,14 @@ export interface Conso {
   full: boolean;
   price: number;
 }
+
+
+export interface ConsoImport {
+  voiture: number;
+  date: string;
+  volume: number;
+  partiel: string;
+  prix: number;
+  km: number;
+  idCloud: number;
+}

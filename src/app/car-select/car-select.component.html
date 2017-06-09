@@ -1,4 +1,4 @@
-<md-card *ngFor="let car of carsObservable | async" class="car-card" [routerLink]="[car.id]">
+<md-card *ngFor="let car of carsObservable | async" class="car-card" [routerLink]="[car | id:'car']">
   <md-card-header>
     <div md-card-avatar class="car-card-icon"></div>
     <md-card-title>{{car.name}}</md-card-title>

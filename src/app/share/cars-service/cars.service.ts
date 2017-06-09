@@ -1,29 +1,51 @@
 import { Injectable } from '@angular/core';
-import {Car} from '../models/cars.interface';
+import {Car, CAR_ID_SYM} from '../models/cars.interface';
 import {Observable} from 'rxjs/Observable';
+import {AngularFireDatabase} from 'angularfire2/database';
+import {AuthService} from '../auth-service/auth.service';
+import * as firebase from 'firebase/app';
+import 'rxjs/add/observable/fromPromise';
+import {FuelService} from '../fuel-service/fuel.service';
 
 @Injectable()
 export class CarsService {
-  carsMock: Array<Car> = [
-    {
-      id: 1,
-      name: 'Opel Corsa',
-      mark: 'Opel',
-      model: 'Corsa',
-      body: 'gsi 1.8',
-      mileage: 169852.32,
-      fuel: 0
-    }
-  ];
-
-  constructor() { }
+  constructor(private db: AngularFireDatabase,
+              private authService: AuthService,
+              private fuelService: FuelService) { }
 
 
   getCars(): Observable<Array<Car>> {
-    return Observable.of(this.carsMock);
+    return this.authService.getUserDbObject().mergeMap((userRef: firebase.database.Reference) => {
+      return Observable.fromPromise(userRef.child(`cars`).once('value'));
+    }).map((carSnapshot: firebase.database.DataSnapshot) => {
+      const cars: Array<Car> = [];
+      for (const key in carSnapshot.val()) {
+        if (carSnapshot.val().hasOwnProperty(key)) {
+          const car = carSnapshot.val()[key];
+          car[CAR_ID_SYM] = key;
+          cars.push(car);
+        }
+      }
+      return cars;
+    });
   }
 
-  getCar(id: number): Observable<Car> {
-    return Observable.of(this.carsMock[0]);
+  getCar(id: string): Observable<Car> {
+    return this.authService.getUserDbObject().mergeMap((userRef: firebase.database.Reference) => {
+      return Observable.fromPromise(userRef.child(`cars/${id}`).once('value'));
+    }).map((carSnapshot: firebase.database.DataSnapshot) => {
+      const car: Car = carSnapshot.val();
+      car[CAR_ID_SYM] = carSnapshot.key;
+      console.log(car);
+      return car;
+    });
+  }
+
+  createCar(car: Car): Observable<Car> {
+    return this.authService.getUserDbObject().mergeMap((userRef: firebase.database.Reference) => {
+      return Observable.fromPromise(userRef.child('cars').push(car));
+    }).mergeMap((value: firebase.database.ThenableReference) => {
+      return this.getCar(value.key);
+    });
   }
 }

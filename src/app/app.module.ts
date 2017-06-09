@@ -32,19 +32,26 @@ import { LoginComponent } from './login/login.component';
 import {CarResolver} from './resolves/car.resolver';
 import {FuelResolver} from './resolves/fuel.resolver';
 import {FuelService} from './share/fuel-service/fuel.service';
+import {IdPipe} from './share/id-filter/id.filter';
+import {TranslateModule} from '@ngx-translate/core';
+import {ImportService} from './share/import-service/import.service';
+import {ConsoService} from './share/conso-service/conso.service';
 
 @NgModule({
   declarations: [
+    /** Components **/
     AppComponent,
     CarSelectComponent,
     CarSummaryComponent,
     CarFabComponent,
     CarTabsComponent,
     CarConsoComponent,
-    RoundPipe,
     CarReviewComponent,
     CarSpendComponent,
-    LoginComponent
+    LoginComponent,
+    /** Pipes **/
+    RoundPipe,
+    IdPipe
   ],
   imports: [
     BrowserModule,
@@ -61,6 +68,7 @@ import {FuelService} from './share/fuel-service/fuel.service';
     ConsoboxShareModule,
     ChartModule.forRoot(highcharts),
     RouterModule.forRoot(AppRoutes),
+    TranslateModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule
@@ -74,6 +82,8 @@ import {FuelService} from './share/fuel-service/fuel.service';
     CommonService,
     AuthService,
     FuelService,
+    ImportService,
+    ConsoService,
     /** Others **/
     AuthGuard],
   bootstrap: [AppComponent]
