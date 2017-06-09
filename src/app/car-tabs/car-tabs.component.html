@@ -1,4 +1,4 @@
-<md-tab-group>
+<md-tab-group (selectChange)="tabChange($event)">
   <md-tab label="Principal">
     <app-car-summary [car]="car"></app-car-summary>
   </md-tab>
@@ -9,7 +9,6 @@
     <app-car-review [car]="car"></app-car-review>
   </md-tab>
   <md-tab label="Dépenses">
-    <h1>Some more tab content</h1>
-    <p>...</p>
+    <app-car-spend [car]="car"></app-car-spend>
   </md-tab>
 </md-tab-group>

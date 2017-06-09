@@ -6,7 +6,7 @@
   <span class="trend warning">+8.5%</span>
 </div>
 
-<chart [options]="options"></chart>
+<chart [options]="options" (load)="setChart($event.context)"></chart>
 
 <md-list>
   <md-list-item>

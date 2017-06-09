@@ -1,31 +1,26 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Car} from '../share/models/cars.interface';
-import {Observable} from 'rxjs/Observable';
-import {ActivatedRoute, Router} from '@angular/router';
 import {CommonService} from '../share/common-service/common.service';
 import {Notification, NotificationType} from '../share/models/notification.class';
 
 @Component({
-  selector: 'app-car-summary',
-  templateUrl: './car-summary.component.html',
-  styleUrls: ['./car-summary.component.scss']
+  selector: 'app-car-spend',
+  templateUrl: './car-spend.component.html',
+  styleUrls: ['./car-spend.component.scss']
 })
-export class CarSummaryComponent implements OnInit {
+export class CarSpendComponent implements OnInit {
   @Input() car: Car;
   options: Object;
   chart: any;
 
-  constructor(private commonService: CommonService) {
-  }
+  constructor(private commonService: CommonService) { }
 
   ngOnInit() {
-
     this.options = {
       title : {
         text : null
       },
       chart: {
-        type: 'line',
         backgroundColor: 'transparent'
       },
       credits: {
@@ -45,8 +40,13 @@ export class CarSummaryComponent implements OnInit {
         enabled: false
       },
       series: [{
+        type: 'line',
         data: [29.9, 71.5, 106.4, 129.2],
-      }]
+      },
+        {
+          type: 'column',
+          data: [29.9, 71.5, 106.4, 129.2],
+        }]
     };
 
     this.commonService.notifyObservable$.filter( (notification: Notification) => notification.type === NotificationType.CAR_TAB_CHANGE)

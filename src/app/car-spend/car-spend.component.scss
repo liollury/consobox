@@ -1,0 +1,79 @@
+.main-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    font-size: 1.3em;
+    margin: 10px 0;
+  }
+
+  .large {
+    font-size: 1.8em;
+    font-weight: bold;
+  }
+
+  .medium {
+    font-size: 0.9em;
+    color: gray;
+  }
+
+  .large-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70%;
+    margin: 20px 0;
+  }
+
+}
+
+.trend {
+  display: flex;
+  flex-direction: row;
+  & > div {
+    margin: 20px 0;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    span  {
+      &.price {
+        line-height: 2em;
+        font-size: 1.8em;
+        .smaller {
+          font-size: 0.6em;
+        }
+      }
+      &.name {
+        font-size: 0.9em;
+      }
+    }
+  }
+
+  hr {
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid grey;
+  }
+}
+
+
+chart {
+  display: block;
+
+}
+@media screen and (max-width: 1024px) {
+  chart {
+    height: 250px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  chart {
+    height: 400px;
+    margin: 10px;
+  }
+}
+

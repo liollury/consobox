@@ -20,6 +20,12 @@ import { CarConsoComponent } from './car-conso/car-conso.component';
 import {RoundPipe} from './share/round-filter/round.filter';
 import {MomentModule} from 'angular2-moment';
 import { CarReviewComponent } from './car-review/car-review.component';
+import { CarSpendComponent } from './car-spend/car-spend.component';
+import {CommonService} from './share/common-service/common.service';
+import {environment} from '../environments/environment';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
 
 @NgModule({
   declarations: [
@@ -30,7 +36,8 @@ import { CarReviewComponent } from './car-review/car-review.component';
     CarTabsComponent,
     CarConsoComponent,
     RoundPipe,
-    CarReviewComponent
+    CarReviewComponent,
+    CarSpendComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +53,12 @@ import { CarReviewComponent } from './car-review/car-review.component';
     MomentModule,
     ConsoboxShareModule,
     ChartModule.forRoot(highcharts),
-    RouterModule.forRoot(AppRoutes)
+    RouterModule.forRoot(AppRoutes),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
-  providers: [CarsService, CarResolver],
+  providers: [CarsService, CarResolver, CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

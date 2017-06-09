@@ -1,0 +1,30 @@
+<div class="main-info">
+  <span class="title">Coûts moyen</span>
+  <div class="large-info">
+    <div>
+      <span class="large">4.21</span><span class="medium">€/Jour</span>
+    </div>
+    <div>
+      <span class="large">0.25</span><span class="medium">€/Km</span>
+    </div>
+  </div>
+</div>
+
+<chart [options]="options" (load)="setChart($event.context)"></chart>
+
+<div class="trend">
+  <div>
+    <span class="price">9287<span class="smaller">€</span></span>
+    <span class="name">Carburant</span>
+  </div>
+  <hr />
+  <div>
+    <span class="price">1155<span class="smaller">€</span></span>
+    <span class="name">Entretien</span>
+  </div>
+  <hr />
+  <div>
+    <span class="price">588<span class="smaller">€</span></span>
+    <span class="name">Réparation</span>
+  </div>
+</div>
