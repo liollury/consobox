@@ -17,7 +17,6 @@ export class CarTabsComponent implements OnInit {
               private commonService: CommonService) { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.data);
     this.car = this.route.snapshot.data.car;
   }
 

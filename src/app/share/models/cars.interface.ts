@@ -1,6 +1,7 @@
 import {Fuel} from './fuel.interface';
 import {Conso} from './conso.interface';
 import {JsonProperty} from 'json-typescript-mapper';
+import {Review} from './review.interface';
 
 export const CAR_ID_SYM = Symbol('CAR_ID_SYM');
 export class Car {
@@ -23,6 +24,9 @@ export class Car {
 
   @JsonProperty({clazz: Conso, name: 'consommations'})
   consommations: Conso[];
+
+  @JsonProperty({clazz: Review, name: 'reviews'})
+  reviews: Review[];
 
 
   static getEnergyGrade(CO2: number): EnergyGrade {
@@ -49,6 +53,7 @@ export class Car {
     this.mileage = void 0;
     this.fuel = void 0;
     this.consommations = void 0;
+    this.reviews = void 0;
   }
 
   get CO2Theorical() {
@@ -61,6 +66,10 @@ export class Car {
 
   sortConsoDesc() {
     this.consommations = this.consommations.sort((a: Conso, b: Conso) => b.date - a.date);
+  }
+
+  hasReview(reviewId: number): boolean {
+    return !this.reviews ? false : this.reviews.filter((review: Review) => review.id === reviewId).length > 0;
   }
 
 }

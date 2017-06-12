@@ -4,26 +4,49 @@ import {AuthGuard} from './share/auth-service/auth-guard.service';
 import {LoginComponent} from './login/login.component';
 import {FuelResolver} from './resolves/fuel.resolver';
 import {CarResolver} from './resolves/car.resolver';
+import {CarAddReviewComponent} from './car-add-review/car-add-review.component';
+import {ReviewCategoriesResolver} from './resolves/review-categories.resolver';
 
 export const carSelect = {
   path : '',
   component: CarSelectComponent
 }
 
-export const carSummary = {
-  path: ':carId',
-  params: { carId: '1' },
+export const carAddReview = {
+  path: 'addReview',
+  component: CarAddReviewComponent,
+  resolve: {
+    reviewCategories: ReviewCategoriesResolver
+  }
+};
+
+export const carTabs = {
+  path : '',
   component: CarTabsComponent,
+  resolve: {
+
+  }
+}
+
+export const carDetails = {
+  path: ':carId',
+  children: [
+    carTabs,
+    carAddReview
+  ],
   resolve: {
     car: CarResolver
   }
 };
 
+
+
 export const carRoot = {
   path: 'car',
   children: [
     carSelect,
-    carSummary
+    carDetails,
+    carAddReview
   ],
   canActivate: [
     AuthGuard

@@ -7,10 +7,7 @@ import "rxjs/add/operator/mergeMap";
 @Component({
   selector: 'app-car-review',
   templateUrl: './car-review.component.html',
-  styleUrls: ['./car-review.component.scss'],
-  providers: [
-    ReviewService
-  ]
+  styleUrls: ['./car-review.component.scss']
 })
 export class CarReviewComponent implements OnInit {
   @Input() car: Car;
@@ -20,7 +17,7 @@ export class CarReviewComponent implements OnInit {
   constructor(private reviewService: ReviewService) { }
 
   ngOnInit() {
-    this.reviewService.getAllReviewsCategoryType().flatMap((revCats: Array<ReviewCategory>) => {
+    /*this.reviewService.getAllReviewsCategoryType().flatMap((revCats: Array<ReviewCategory>) => {
       this.reviewCategories = revCats;
       return this.reviewService.getReviews(this.car[CAR_ID_SYM]);
     }).subscribe((revs: Array<Review>) => {
@@ -32,11 +29,15 @@ export class CarReviewComponent implements OnInit {
         }
         this.reviewsMap.get(reviewCategory).push(review);
       }
-    });
+    });*/
   }
 
   getReviewType(category: ReviewCategory, review: Review): ReviewType {
     return category.reviews.filter((reviewType: ReviewType) => review.id === reviewType.id)[0];
+  }
+
+  addReview() {
+
   }
 
 }

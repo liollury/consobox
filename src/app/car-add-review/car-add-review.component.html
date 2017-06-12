@@ -1,0 +1,16 @@
+<div>
+  <md-list>
+    <div *ngFor="let category of reviewCategories">
+      <h3 md-subheader>{{category.name}}</h3>
+      <div *ngFor="let review of category.reviews" class="review-item">
+        <span>{{review.name}}</span>
+        <md-slide-toggle [(ngModel)]="activeReviews[review.id]"></md-slide-toggle>
+      </div>
+      <md-divider></md-divider>
+    </div>
+  </md-list>
+  <div class="button-container">
+    <button md-button (click)="goBack()">Annuler</button>
+    <button md-raised-button (click)="saveChanges()">Valider</button>
+  </div>
+</div>

@@ -1,25 +1,75 @@
-export interface ReviewCategory {
-  id: number;
-  name: string;
-  icon: string;
-  reviews: Array<ReviewType>;
-}
+import {JsonProperty} from 'json-typescript-mapper';
 
-export interface ReviewType {
-  id: number;
-  name: string;
-  fuel: [
-      {
-        type: number;
-        mileage: number;
-        interval: number;
-      }
-    ]
-}
 
-export interface Review {
-  id: number;
-  category: number;
+export class ReviewTypeFuel {
+  @JsonProperty('type')
+  type: number;
+
+  @JsonProperty('mileage')
   mileage: number;
+
+  @JsonProperty('interval')
   interval: number;
+
+  constructor() {
+    this.type = void 0;
+    this.mileage = void 0;
+    this.interval = void 0;
+  }
+}
+
+export class ReviewType {
+  @JsonProperty('id')
+  id: number;
+
+  @JsonProperty('name')
+  name: string;
+
+  @JsonProperty({clazz: ReviewTypeFuel, name: 'fuel'})
+  fuel: ReviewTypeFuel[];
+
+  constructor() {
+    this.id = void 0;
+    this.name = void 0;
+    this.fuel = void 0;
+  }
+}
+
+export class ReviewCategory {
+  @JsonProperty('id')
+  id: number;
+
+  @JsonProperty('name')
+  name: string;
+
+  @JsonProperty('icon')
+  icon: string;
+
+  @JsonProperty({clazz: ReviewType, name: 'reviews'})
+  reviews: Array<ReviewType>;
+
+  constructor() {
+    this.id = void 0;
+    this.name = void 0;
+    this.icon = void 0;
+    this.reviews = void 0;
+  }
+}
+
+
+export class Review {
+  @JsonProperty('id')
+  id: number;
+
+  @JsonProperty('mileage')
+  mileage: number;
+
+  @JsonProperty('interval')
+  interval: number;
+
+  constructor() {
+    this.id = void 0;
+    this.mileage = void 0;
+    this.interval = void 0;
+  }
 }

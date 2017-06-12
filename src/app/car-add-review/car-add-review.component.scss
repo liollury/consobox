@@ -1,0 +1,15 @@
+md-list {
+  .review-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px;
+  }
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 8px;
+}

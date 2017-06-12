@@ -49,4 +49,10 @@ export class CarsService {
       return this.getCar(value.key);
     });
   }
+
+  saveReviews(car: Car): Observable<firebase.database.ThenableReference> {
+    return this.authService.getUserDbObject().mergeMap((userRef: firebase.database.Reference) => {
+      return Observable.fromPromise(userRef.child(`cars/${car[CAR_ID_SYM]}/reviews`).set(car.reviews));
+    })
+  }
 }

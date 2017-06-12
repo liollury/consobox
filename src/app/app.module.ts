@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdSidenavModule,
-  MdListModule, MdTabsModule
+  MdListModule, MdTabsModule, MdSlideToggleModule
 } from '@angular/material';
 import { AppComponent } from './app.component';
 import { CarSelectComponent } from './car-select/car-select.component';
@@ -36,6 +36,10 @@ import {IdPipe} from './share/id-filter/id.filter';
 import {TranslateModule} from '@ngx-translate/core';
 import {ImportService} from './share/import-service/import.service';
 import {ConsoService} from './share/conso-service/conso.service';
+import { CarAddReviewComponent } from './car-add-review/car-add-review.component';
+import {ReviewCategoriesResolver} from './resolves/review-categories.resolver';
+import {ReviewService} from './share/review-service/review.service';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,6 +51,7 @@ import {ConsoService} from './share/conso-service/conso.service';
     CarTabsComponent,
     CarConsoComponent,
     CarReviewComponent,
+    CarAddReviewComponent,
     CarSpendComponent,
     LoginComponent,
     /** Pipes **/
@@ -64,6 +69,8 @@ import {ConsoService} from './share/conso-service/conso.service';
     MdSidenavModule,
     MdListModule,
     MdTabsModule,
+    MdSlideToggleModule,
+    FormsModule,
     MomentModule,
     ConsoboxShareModule,
     ChartModule.forRoot(highcharts),
@@ -77,7 +84,9 @@ import {ConsoService} from './share/conso-service/conso.service';
     /** Resolvers **/
     CarResolver,
     FuelResolver,
+    ReviewCategoriesResolver,
     /** Services **/
+    ReviewService,
     CarsService,
     CommonService,
     AuthService,
