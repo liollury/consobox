@@ -28,12 +28,12 @@
   <md-divider></md-divider>
   <md-list-item>
     <h4 class="title" md-line>Rejet de CO2</h4>
-    <p class="list-item" md-line>195.16gCO2/Km - Classe E</p>
+    <p class="list-item" md-line>{{getConsoAverage() * car.fuel.CO2PerLiter / 100 | round: 2}}gCO2/Km - Classe {{getEnergyGrade(getConsoAverage() * car.fuel.CO2PerLiter / 100)}}</p>
   </md-list-item>
   <md-divider></md-divider>
   <md-list-item>
     <h4 class="title" md-line>Rejet de CO2 théorique</h4>
-    <p class="list-item" md-line>{{car.CO2Theorical | round: 2}}gCO2/Km - Classe E</p>
+    <p class="list-item" md-line>{{car.CO2Theorical | round: 2}}gCO2/Km - Classe {{getEnergyGrade(car.CO2Theorical)}}</p>
   </md-list-item>
 </md-list>
 

@@ -24,6 +24,24 @@ export class Car {
   @JsonProperty({clazz: Conso, name: 'consommations'})
   consommations: Conso[];
 
+
+  static getEnergyGrade(CO2: number): EnergyGrade {
+    if (CO2 <= 100) {
+      return EnergyGrade.CLASS_A;
+    }else if (CO2 > 100 && CO2 <= 120) {
+      return EnergyGrade.CLASS_B;
+    }else if (CO2 > 120 && CO2 <= 140) {
+      return EnergyGrade.CLASS_C;
+    }else if (CO2 > 140 && CO2 <= 160) {
+      return EnergyGrade.CLASS_D;
+    }else if (CO2 > 160 && CO2 <= 200) {
+      return EnergyGrade.CLASS_E;
+    }else if (CO2 > 200 && CO2 <= 250) {
+      return EnergyGrade.CLASS_F;
+    }else {
+      return EnergyGrade.CLASS_G;
+    }
+  }
   constructor() {
     this.name = void 0;
     this.cv = void 0;
@@ -40,4 +58,19 @@ export class Car {
   get consoTheorical() {
     return 100 / (this.fuel.CO2PerLiter / this.CO2Theorical);
   }
+
+  sortConsoDesc() {
+    this.consommations = this.consommations.sort((a: Conso, b: Conso) => b.date - a.date);
+  }
+
+}
+
+export enum EnergyGrade {
+  CLASS_A = <any>'A',
+  CLASS_B = <any>'B',
+  CLASS_C = <any>'C',
+  CLASS_D = <any>'D',
+  CLASS_E = <any>'E',
+  CLASS_F = <any>'F',
+  CLASS_G = <any>'G'
 }

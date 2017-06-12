@@ -36,6 +36,7 @@ export class CarsService {
       return Observable.fromPromise(userRef.child(`cars/${id}`).once('value'));
     }).map((carSnapshot: firebase.database.DataSnapshot) => {
       const car: Car = deserialize(Car, carSnapshot.val());
+      car.sortConsoDesc();
       car[CAR_ID_SYM] = carSnapshot.key;
       return car;
     });
