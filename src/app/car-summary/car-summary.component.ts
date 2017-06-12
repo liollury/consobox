@@ -15,6 +15,7 @@ import {Conso} from '../share/models/conso.interface';
 export class CarSummaryComponent implements OnInit {
   @Input() car: Car;
   options: Object;
+  consoAverage: number;
   chart: any;
 
   constructor(private commonService: CommonService) {
@@ -62,8 +63,15 @@ export class CarSummaryComponent implements OnInit {
     this.chart = chartInstance;
   }
 
-  getConsoAverage() {
-    return this.car.consommations.reduce((acc: number, current: Conso) => acc + (current.volume * 100 / current.mileage), 0) / this.car.consommations.length;
+  getConsoAverage(): number {
+    if (!this.consoAverage) {
+      this.consoAverage = this.car.consommations.reduce((acc: number, current: Conso) => acc + (current.volume * 100 / current.mileage), 0) / this.car.consommations.length;
+    }
+    return this.consoAverage;
+  }
+
+  getDiffConsoPercent(): number {
+    return (this.getConsoAverage() - this.car.consoTheorical) / this.car.consoTheorical * 100;
   }
 
 }

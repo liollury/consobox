@@ -3,7 +3,9 @@
   <div>
     <span class="large">{{getConsoAverage() | round: 2}}</span><span class="medium"> litres/100Km</span>
   </div>
-  <span class="trend warning">+8.5%</span>
+  <span class="trend" [class.warning]="getDiffConsoPercent() > 0" [class.success]="getDiffConsoPercent() <= 0">
+    {{getDiffConsoPercent() > 0 ? '+': ''}}{{getDiffConsoPercent() | round: 1}}%
+  </span>
 </div>
 
 <chart [options]="options" (load)="setChart($event.context)"></chart>
@@ -21,7 +23,7 @@
   <md-divider></md-divider>
   <md-list-item>
     <h4 class="title" md-line>Consommation théorique mixte</h4>
-    <p class="list-item" md-line>8.09l/100km</p>
+    <p class="list-item" md-line>{{car.consoTheorical | round:2}}l/100km</p>
   </md-list-item>
   <md-divider></md-divider>
   <md-list-item>
@@ -31,7 +33,7 @@
   <md-divider></md-divider>
   <md-list-item>
     <h4 class="title" md-line>Rejet de CO2 théorique</h4>
-    <p class="list-item" md-line>195.16gCO2/Km - Classe E</p>
+    <p class="list-item" md-line>{{car.CO2Theorical | round: 2}}gCO2/Km - Classe E</p>
   </md-list-item>
 </md-list>
 

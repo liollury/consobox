@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyCi89ho5EG7mEt6nWnxa1yz5Gyzsbeg9ik',
+    apiKey: 'AIzaSyCi89ho5EG7mdEt6nWnxa1yz5Gyzsbeg9ik',
     authDomain: 'consobox-97fdb.firebaseapp.com',
     databaseURL: 'https://consobox-97fdb.firebaseio.com',
     projectId: 'consobox-97fdb',

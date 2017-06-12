@@ -6,6 +6,7 @@ import {AuthService} from '../auth-service/auth.service';
 import * as firebase from 'firebase/app';
 import 'rxjs/add/observable/fromPromise';
 import {FuelService} from '../fuel-service/fuel.service';
+import {deserialize} from 'json-typescript-mapper';
 
 @Injectable()
 export class CarsService {
@@ -21,7 +22,7 @@ export class CarsService {
       const cars: Array<Car> = [];
       for (const key in carSnapshot.val()) {
         if (carSnapshot.val().hasOwnProperty(key)) {
-          const car = carSnapshot.val()[key];
+          const car = deserialize(Car, carSnapshot.val()[key]);
           car[CAR_ID_SYM] = key;
           cars.push(car);
         }
@@ -34,9 +35,8 @@ export class CarsService {
     return this.authService.getUserDbObject().mergeMap((userRef: firebase.database.Reference) => {
       return Observable.fromPromise(userRef.child(`cars/${id}`).once('value'));
     }).map((carSnapshot: firebase.database.DataSnapshot) => {
-      const car: Car = carSnapshot.val();
+      const car: Car = deserialize(Car, carSnapshot.val());
       car[CAR_ID_SYM] = carSnapshot.key;
-      console.log(car);
       return car;
     });
   }
