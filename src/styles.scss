@@ -26,3 +26,9 @@ body {
 .text-capitalize {
   text-transform: capitalize;
 }
+
+md-input-container.no-margin {
+  .mat-input-wrapper {
+    margin: 0;
+  }
+}

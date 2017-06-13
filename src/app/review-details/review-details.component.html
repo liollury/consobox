@@ -1,0 +1,30 @@
+<div class="main-info">
+  <span class="title">{{reviewType.name}}</span>
+</div>
+<div>
+  <div class="counter">
+    <img src="../../assets/images/counter.png" />
+  </div>
+  <div class="increment">
+    <app-increment [(ngModel)]="review.mileage" unite="Km" offset="1000"></app-increment>
+  </div>
+</div>
+<p class="help">
+  Si vous n'êtes pas sûr de votre valeur, la valeur par défaut pour ce type de révision est de <strong>{{reviewType.fuel[car.fuel.id].mileage}}</strong>Km.
+</p>
+<md-divider></md-divider>
+<div>
+  <div class="counter">
+    <img src="../../assets/images/calendar.png" />
+  </div>
+  <div class="increment">
+    <app-increment [(ngModel)]="review.interval" unite="Mois" offset="1"></app-increment>
+  </div>
+</div>
+<p class="help">
+  Si vous n'êtes pas sûr de votre valeur, la valeur par défaut pour ce type de révision est de <strong>{{reviewType.fuel[car.fuel.id].interval}}</strong>Mois.
+</p>
+<div class="button-container">
+  <button md-button (click)="goBack()">Annuler</button>
+  <button md-raised-button (click)="saveChanges()">Valider</button>
+</div>

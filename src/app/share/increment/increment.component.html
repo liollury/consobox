@@ -1,0 +1,10 @@
+<div class="increment">
+  <button class="act" md-mini-fab (click)="value = value - offsetNumeric">-</button>
+  <md-input-container class="value no-margin">
+    <input mdInput [(ngModel)]="value" type="number">
+  </md-input-container>
+  <button class="act" md-mini-fab (click)="value = value + offsetNumeric">+</button>
+</div>
+<div class="unite">
+  {{unite}}
+</div>

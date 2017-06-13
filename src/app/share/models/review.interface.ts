@@ -93,6 +93,6 @@ export class Review {
     this.id = void 0;
     this.mileage = void 0;
     this.interval = void 0;
-    this.history = void 0;
+    this.history = [];
   }
 }

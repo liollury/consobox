@@ -7,6 +7,7 @@ import * as firebase from 'firebase/app';
 import 'rxjs/add/observable/fromPromise';
 import {FuelService} from '../fuel-service/fuel.service';
 import {deserialize} from 'json-typescript-mapper';
+import {removeUndefined} from '../utils';
 
 @Injectable()
 export class CarsService {
@@ -52,7 +53,7 @@ export class CarsService {
 
   saveReviews(car: Car): Observable<firebase.database.ThenableReference> {
     return this.authService.getUserDbObject().mergeMap((userRef: firebase.database.Reference) => {
-      return Observable.fromPromise(userRef.child(`cars/${car[CAR_ID_SYM]}/reviews`).set(car.reviews));
+      return Observable.fromPromise(userRef.child(`cars/${car[CAR_ID_SYM]}/reviews`).set(removeUndefined(car.reviews)));
     })
   }
 }

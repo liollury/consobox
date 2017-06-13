@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdSidenavModule,
-  MdListModule, MdTabsModule, MdSlideToggleModule
+  MdListModule, MdTabsModule, MdSlideToggleModule, MdInputModule
 } from '@angular/material';
 import { AppComponent } from './app.component';
 import { CarSelectComponent } from './car-select/car-select.component';
@@ -40,6 +40,9 @@ import { CarAddReviewComponent } from './car-add-review/car-add-review.component
 import {ReviewCategoriesResolver} from './resolves/review-categories.resolver';
 import {ReviewService} from './share/review-service/review.service';
 import {FormsModule} from '@angular/forms';
+import { ReviewDetailsComponent } from './review-details/review-details.component';
+import {ReviewTypeResolver} from './resolves/review-type.resolver';
+import {IncrementComponent} from './share/increment/increment.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,7 @@ import {FormsModule} from '@angular/forms';
     CarAddReviewComponent,
     CarSpendComponent,
     LoginComponent,
+    ReviewDetailsComponent,
     /** Pipes **/
     RoundPipe,
     IdPipe
@@ -66,6 +70,7 @@ import {FormsModule} from '@angular/forms';
     MdCardModule,
     MdToolbarModule,
     MdIconModule,
+    MdInputModule,
     MdSidenavModule,
     MdListModule,
     MdTabsModule,
@@ -85,6 +90,7 @@ import {FormsModule} from '@angular/forms';
     CarResolver,
     FuelResolver,
     ReviewCategoriesResolver,
+    ReviewTypeResolver,
     /** Services **/
     ReviewService,
     CarsService,

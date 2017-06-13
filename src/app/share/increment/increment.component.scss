@@ -1,0 +1,21 @@
+.increment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .act {
+    font-size: 2em;
+  }
+  .value {
+    margin: 0 0 0.5em 0;
+    input {
+      font-size: 1.8em;
+      text-align: center;
+    }
+  }
+}
+
+.unite {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
