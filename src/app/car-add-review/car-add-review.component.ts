@@ -56,6 +56,7 @@ export class CarAddReviewComponent implements OnInit {
     review.id = reviewType.id;
     review.mileage = reviewFuelType.mileage;
     review.interval = reviewFuelType.interval;
+    review.history = [];
     return review;
   }
 

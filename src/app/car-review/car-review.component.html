@@ -9,7 +9,7 @@
 <md-list>
   <md-divider></md-divider>
   <div class="add-rev" (click)="addReview()">
-    <md-icon>add</md-icon><h3 md-subheader>Ajouter un type de révision</h3>
+    <md-icon>add</md-icon><h3 md-subheader [routerLink]="['addReview']">Ajouter un type de révision</h3>
   </div>
   <div *ngFor="let category of reviewCategories">
     <md-divider></md-divider>

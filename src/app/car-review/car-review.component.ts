@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Car, CAR_ID_SYM} from '../share/models/cars.interface';
 import {ReviewService} from '../share/review-service/review.service';
-import {Review, ReviewCategory, ReviewType} from '../share/models/review.interface';
+import {Review, REVIEW_TYPE_SYM, ReviewCategory, ReviewType} from '../share/models/review.interface';
 import "rxjs/add/operator/mergeMap";
 
 @Component({
@@ -17,19 +17,20 @@ export class CarReviewComponent implements OnInit {
   constructor(private reviewService: ReviewService) { }
 
   ngOnInit() {
-    /*this.reviewService.getAllReviewsCategoryType().flatMap((revCats: Array<ReviewCategory>) => {
+    this.reviewService.getAllReviewsCategoryType().subscribe((revCats: Array<ReviewCategory>) => {
       this.reviewCategories = revCats;
-      return this.reviewService.getReviews(this.car[CAR_ID_SYM]);
-    }).subscribe((revs: Array<Review>) => {
       this.reviewsMap = new Map();
-      for (const review of revs) {
-        const reviewCategory = this.reviewCategories.filter((value) => value.id === review.category)[0];
-        if (!this.reviewsMap.get(reviewCategory)) {
-          this.reviewsMap.set(reviewCategory, []);
-        }
-        this.reviewsMap.get(reviewCategory).push(review);
-      }
-    });*/
+      this.reviewCategories.forEach((category: ReviewCategory) => {
+        this.reviewsMap.set(category, []);
+        category.reviews.forEach((reviewType: ReviewType) => {
+          const foundRev = this.car.reviews.filter((review: Review) => review.id === reviewType.id);
+          if (foundRev.length !== 0) {
+            foundRev[0][REVIEW_TYPE_SYM] = reviewType;
+            this.reviewsMap.get(category).push(foundRev[0]);
+          }
+        });
+      });
+    });
   }
 
   getReviewType(category: ReviewCategory, review: Review): ReviewType {

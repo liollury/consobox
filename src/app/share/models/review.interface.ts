@@ -56,8 +56,27 @@ export class ReviewCategory {
   }
 }
 
+export class ReviewHistory {
+  @JsonProperty('date')
+  date: number;
 
+  @JsonProperty('mileage')
+  mileage: number;
+
+  @JsonProperty('price')
+  price: number;
+
+  constructor() {
+    this.date = void 0;
+    this.mileage = void 0;
+    this.price = void 0;
+  }
+}
+
+export const REVIEW_TYPE_SYM = Symbol('REVIEW_TYPE_SYM');
 export class Review {
+  REVIEW_TYPE_SYM?: Symbol;
+
   @JsonProperty('id')
   id: number;
 
@@ -67,9 +86,13 @@ export class Review {
   @JsonProperty('interval')
   interval: number;
 
+  @JsonProperty({clazz: ReviewHistory, name: 'history'})
+  history: ReviewHistory[];
+
   constructor() {
     this.id = void 0;
     this.mileage = void 0;
     this.interval = void 0;
+    this.history = void 0;
   }
 }
