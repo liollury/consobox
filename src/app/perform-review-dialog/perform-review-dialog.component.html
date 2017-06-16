@@ -1,0 +1,18 @@
+<h4>{{reviewType.name}}</h4>
+<md-input-container>
+  <input mdInput [mdDatepicker]="picker" placeholder="Date de la révision" [(ngModel)]="instance.date">
+  <button mdSuffix [mdDatepickerToggle]="picker"></button>
+</md-input-container>
+<md-datepicker #picker></md-datepicker>
+<md-input-container>
+  <input mdInput placeholder="Kilométrage" type="number" [(ngModel)]="instance.mileage">
+  <label mdSuffix>Km</label>
+</md-input-container>
+<md-input-container>
+  <input mdInput placeholder="Prix" type="number" [(ngModel)]="instance.price">
+  <label mdSuffix>€</label>
+</md-input-container>
+<div class="button-container">
+  <button md-button md-dialog-close>Annuler</button>
+  <button md-raised-button (click)="valide()">Valider</button>
+</div>

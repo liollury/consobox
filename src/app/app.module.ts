@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdSidenavModule,
-  MdListModule, MdTabsModule, MdSlideToggleModule, MdInputModule
+  MdListModule, MdTabsModule, MdSlideToggleModule, MdInputModule, MdDialogModule, MdDatepickerModule, MdNativeDateModule
 } from '@angular/material';
 import { AppComponent } from './app.component';
 import { CarSelectComponent } from './car-select/car-select.component';
@@ -43,6 +43,7 @@ import {FormsModule} from '@angular/forms';
 import { ReviewDetailsComponent } from './review-details/review-details.component';
 import {ReviewTypeResolver} from './resolves/review-type.resolver';
 import {IncrementComponent} from './share/increment/increment.component';
+import { PerformReviewDialogComponent } from './perform-review-dialog/perform-review-dialog.component';
 
 @NgModule({
   declarations: [
@@ -58,9 +59,13 @@ import {IncrementComponent} from './share/increment/increment.component';
     CarSpendComponent,
     LoginComponent,
     ReviewDetailsComponent,
+    PerformReviewDialogComponent,
     /** Pipes **/
     RoundPipe,
     IdPipe
+  ],
+  entryComponents: [
+    PerformReviewDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -68,10 +73,13 @@ import {IncrementComponent} from './share/increment/increment.component';
     MdButtonModule,
     MdMenuModule,
     MdCardModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
     MdToolbarModule,
     MdIconModule,
     MdInputModule,
     MdSidenavModule,
+    MdDialogModule,
     MdListModule,
     MdTabsModule,
     MdSlideToggleModule,

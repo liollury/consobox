@@ -15,7 +15,7 @@
     <md-divider></md-divider>
     <h3 md-subheader>{{category.name}}</h3>
     <div class="circle-container">
-      <div *ngFor="let review of reviewsMap.get(category)" class="item" [routerLink]="['reviewDetails', review.id]">
+      <div *ngFor="let review of reviewsMap.get(category)" class="item" [mdMenuTriggerFor]="menu">
         <!-- http://www.cssscript.com/demo/pure-css-circular-percentage-bar/ -->
         <span class="circle-info">{{getReviewType(category, review).name}}</span>
         <div class="c100 p82">
@@ -29,6 +29,16 @@
           </div>
         </div>
         <span class="circle-info">5436Km</span>
+        <md-menu #menu="mdMenu">
+          <button md-menu-item [routerLink]="['reviewDetails', review.id]">
+            <md-icon>dialpad</md-icon>
+            <span>Modifier la révision</span>
+          </button>
+          <button md-menu-item (click)="performReview(review, getReviewType(category, review))">
+            <md-icon>voicemail</md-icon>
+            <span>Effectuer la révision</span>
+          </button>
+        </md-menu>
       </div>
     </div>
     <!--md-list-item *ngFor="let review of reviewsMap.get(category)">

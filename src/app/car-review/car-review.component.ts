@@ -1,20 +1,26 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Car, CAR_ID_SYM} from '../share/models/cars.interface';
 import {ReviewService} from '../share/review-service/review.service';
-import {Review, REVIEW_TYPE_SYM, ReviewCategory, ReviewType} from '../share/models/review.interface';
+import {Review, REVIEW_TYPE_SYM, ReviewCategory, ReviewHistory, ReviewType} from '../share/models/review.interface';
 import "rxjs/add/operator/mergeMap";
+import {MdDialog} from '@angular/material';
+import {PerformReviewDialogComponent} from '../perform-review-dialog/perform-review-dialog.component';
+import {CarsService} from '../share/cars-service/cars.service';
 
 @Component({
-  selector: 'app-car-review',
+  selector   : 'app-car-review',
   templateUrl: './car-review.component.html',
-  styleUrls: ['./car-review.component.scss']
+  styleUrls  : ['./car-review.component.scss']
 })
 export class CarReviewComponent implements OnInit {
   @Input() car: Car;
   reviewCategories: Array<ReviewCategory>;
   reviewsMap: Map<ReviewCategory, Array<Review>>;
 
-  constructor(private reviewService: ReviewService) { }
+  constructor(private reviewService: ReviewService,
+              private carService: CarsService,
+              private dialog: MdDialog) {
+  }
 
   ngOnInit() {
     this.reviewService.getAllReviewsCategoryType().subscribe((revCats: Array<ReviewCategory>) => {
@@ -39,6 +45,23 @@ export class CarReviewComponent implements OnInit {
 
   addReview() {
 
+  }
+
+  performReview(review: Review, reviewType: ReviewType) {
+    const dialogRef = this.dialog.open(PerformReviewDialogComponent, {
+      data: {
+        review    : review,
+        reviewType: reviewType,
+        car       : this.car
+      }
+    });
+    dialogRef.afterClosed().subscribe((reviewHistory: ReviewHistory) => {
+      if (!review.history) {
+        review.history = [];
+      }
+      review.history.push(reviewHistory);
+      this.carService.saveReviews(this.car).subscribe();
+    });
   }
 
 }

@@ -58,7 +58,7 @@ export class ReviewCategory {
 
 export class ReviewHistory {
   @JsonProperty('date')
-  date: number;
+  date: number | Date;
 
   @JsonProperty('mileage')
   mileage: number;
