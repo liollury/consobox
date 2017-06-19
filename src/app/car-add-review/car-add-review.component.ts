@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Review, ReviewCategory, ReviewType, ReviewTypeFuel} from '../share/models/review.interface';
-import {Car, CAR_ID_SYM} from '../share/models/cars.interface';
+import {Car} from '../share/models/cars.interface';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CarsService} from '../share/cars-service/cars.service';
 
@@ -33,7 +33,7 @@ export class CarAddReviewComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['car', this.car[CAR_ID_SYM]]);
+    this.router.navigate(['car', this.car.id]);
   }
 
   saveChanges() {

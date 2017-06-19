@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Car, CAR_ID_SYM} from '../share/models/cars.interface';
+import {Car} from '../share/models/cars.interface';
 import {ReviewService} from '../share/review-service/review.service';
 import {Review, REVIEW_TYPE_SYM, ReviewCategory, ReviewHistory, ReviewType} from '../share/models/review.interface';
 import "rxjs/add/operator/mergeMap";

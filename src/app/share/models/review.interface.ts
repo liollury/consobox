@@ -1,4 +1,4 @@
-import {JsonProperty} from 'json-typescript-mapper';
+import {ICustomConverter, JsonProperty} from 'json-typescript-mapper';
 
 
 export class ReviewTypeFuel {
@@ -56,8 +56,18 @@ export class ReviewCategory {
   }
 }
 
+export class JsonDateConverter implements ICustomConverter {
+  fromJson(data: any): any {
+    return parseInt(data, 10);
+  }
+
+  toJson(data: any): any {
+    return data.toString();
+  }
+}
+
 export class ReviewHistory {
-  @JsonProperty('date')
+  @JsonProperty({name: 'date', customConverter: new JsonDateConverter()})
   date: number | Date;
 
   @JsonProperty('mileage')

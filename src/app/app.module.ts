@@ -61,8 +61,7 @@ import { PerformReviewDialogComponent } from './perform-review-dialog/perform-re
     ReviewDetailsComponent,
     PerformReviewDialogComponent,
     /** Pipes **/
-    RoundPipe,
-    IdPipe
+    RoundPipe
   ],
   entryComponents: [
     PerformReviewDialogComponent

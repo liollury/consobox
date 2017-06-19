@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Car, CAR_ID_SYM} from '../share/models/cars.interface';
+import {Car} from '../share/models/cars.interface';
 import {ConsoService} from '../share/conso-service/conso.service';
 import {Conso} from '../share/models/conso.interface';
 

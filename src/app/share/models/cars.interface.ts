@@ -3,9 +3,9 @@ import {Conso} from './conso.interface';
 import {JsonProperty} from 'json-typescript-mapper';
 import {Review} from './review.interface';
 
-export const CAR_ID_SYM = Symbol('CAR_ID_SYM');
 export class Car {
-  CAR_ID_SYM?: Symbol;
+  @JsonProperty({excludeToJson: true})
+  id: string;
 
   @JsonProperty('name')
   name: string;

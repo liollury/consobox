@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {Car, CAR_ID_SYM} from '../models/cars.interface';
+import {Car} from '../models/cars.interface';
 import {Observable} from 'rxjs/Observable';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {AuthService} from '../auth-service/auth.service';
 import * as firebase from 'firebase/app';
 import 'rxjs/add/observable/fromPromise';
 import {FuelService} from '../fuel-service/fuel.service';
-import {deserialize} from 'json-typescript-mapper';
+import {deserialize, serialize} from 'json-typescript-mapper';
 import {removeUndefined} from '../utils';
 
 @Injectable()
@@ -24,7 +24,7 @@ export class CarsService {
       for (const key in carSnapshot.val()) {
         if (carSnapshot.val().hasOwnProperty(key)) {
           const car = deserialize(Car, carSnapshot.val()[key]);
-          car[CAR_ID_SYM] = key;
+          car.id = key;
           cars.push(car);
         }
       }
@@ -38,14 +38,14 @@ export class CarsService {
     }).map((carSnapshot: firebase.database.DataSnapshot) => {
       const car: Car = deserialize(Car, carSnapshot.val());
       car.sortConsoDesc();
-      car[CAR_ID_SYM] = carSnapshot.key;
+      car.id = carSnapshot.key;
       return car;
     });
   }
 
   createCar(car: Car): Observable<Car> {
     return this.authService.getUserDbObject().mergeMap((userRef: firebase.database.Reference) => {
-      return Observable.fromPromise(userRef.child('cars').push(car));
+      return Observable.fromPromise(userRef.child('cars').push(serialize(car)));
     }).mergeMap((value: firebase.database.ThenableReference) => {
       return this.getCar(value.key);
     });
@@ -53,7 +53,7 @@ export class CarsService {
 
   saveReviews(car: Car): Observable<firebase.database.ThenableReference> {
     return this.authService.getUserDbObject().mergeMap((userRef: firebase.database.Reference) => {
-      return Observable.fromPromise(userRef.child(`cars/${car[CAR_ID_SYM]}/reviews`).set(removeUndefined(car.reviews)));
+      return Observable.fromPromise(userRef.child(`cars/${car.id}/reviews`).set(removeUndefined(serialize(car.reviews))));
     })
   }
 }
