@@ -1,11 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Car} from '../share/models/cars.interface';
 import {ReviewService} from '../share/review-service/review.service';
-import {Review, REVIEW_TYPE_SYM, ReviewCategory, ReviewHistory, ReviewType} from '../share/models/review.interface';
+import {Review, ReviewCategory, ReviewHistory, ReviewType} from '../share/models/review.interface';
 import "rxjs/add/operator/mergeMap";
 import {MdDialog} from '@angular/material';
 import {PerformReviewDialogComponent} from '../perform-review-dialog/perform-review-dialog.component';
 import {CarsService} from '../share/cars-service/cars.service';
+import * as moment from 'moment';
 
 @Component({
   selector   : 'app-car-review',
@@ -31,7 +32,8 @@ export class CarReviewComponent implements OnInit {
         category.reviews.forEach((reviewType: ReviewType) => {
           const foundRev = this.car.reviews.filter((review: Review) => review.id === reviewType.id);
           if (foundRev.length !== 0) {
-            foundRev[0][REVIEW_TYPE_SYM] = reviewType;
+            foundRev[0].reviewType = reviewType;
+            foundRev[0].computeLastestHistory(this.car.mileage);
             this.reviewsMap.get(category).push(foundRev[0]);
           }
         });
@@ -41,6 +43,41 @@ export class CarReviewComponent implements OnInit {
 
   getReviewType(category: ReviewCategory, review: Review): ReviewType {
     return category.reviews.filter((reviewType: ReviewType) => review.id === reviewType.id)[0];
+  }
+
+  getReviewShortestDeadline(review: Review): string {
+    if (typeof review.percentCompleteDelay === 'undefined') {
+      return 'Pas de données';
+    }
+    if (review.percentCompleteDelay > review.percentCompleteKm) {
+      return `${review.lastReviewDelay}Mois`;
+    } else {
+      return `${review.lastReviewKm.toFixed(0)}Km`;
+    }
+  }
+
+  getReviewShortestDeadlinePercent(review: Review): number {
+    if (typeof review.percentCompleteDelay === 'undefined') {
+      return 0;
+    }
+    if (review.percentCompleteDelay > review.percentCompleteKm) {
+      return Math.round(review.percentCompleteDelay * 100);
+    } else {
+      return Math.round(review.percentCompleteKm * 100);
+    }
+  }
+
+  getReviewColor(review: Review): string {
+    const percent = this.getReviewShortestDeadlinePercent(review);
+    if (percent < 50) {
+      return '';
+    }else if (percent >= 50 && percent < 65) {
+      return 'green'
+    }else if (percent >= 65 && percent < 80) {
+      return 'orange'
+    }else {
+      return 'red'
+    }
   }
 
   addReview() {
@@ -60,6 +97,7 @@ export class CarReviewComponent implements OnInit {
         review.history = [];
       }
       review.history.push(reviewHistory);
+      review.computeLastestHistory(this.car.mileage);
       this.carService.saveReviews(this.car).subscribe();
     });
   }

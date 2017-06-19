@@ -1,4 +1,5 @@
 import {ICustomConverter, JsonProperty} from 'json-typescript-mapper';
+import * as moment from 'moment';
 
 
 export class ReviewTypeFuel {
@@ -83,9 +84,9 @@ export class ReviewHistory {
   }
 }
 
-export const REVIEW_TYPE_SYM = Symbol('REVIEW_TYPE_SYM');
 export class Review {
-  REVIEW_TYPE_SYM?: Symbol;
+  @JsonProperty({excludeToJson: true})
+  reviewType: ReviewType;
 
   @JsonProperty('id')
   id: number;
@@ -99,10 +100,43 @@ export class Review {
   @JsonProperty({clazz: ReviewHistory, name: 'history'})
   history: ReviewHistory[];
 
+  @JsonProperty({excludeToJson: true})
+  percentCompleteDelay: number;
+
+  @JsonProperty({excludeToJson: true})
+  percentCompleteKm: number;
+
+  @JsonProperty({excludeToJson: true})
+  lastReviewKm: number;
+
+  @JsonProperty({excludeToJson: true})
+  lastReviewDelay: number;
+
   constructor() {
     this.id = void 0;
     this.mileage = void 0;
     this.interval = void 0;
     this.history = [];
+  }
+
+  computeLastestHistory?(carMileage: number): void {
+    const lastestReview: ReviewHistory = this.getLastest();
+    if (lastestReview.date === void 0) {
+      return;
+    }
+    if (this.interval !== 0) {
+      this.lastReviewDelay = this.interval - moment().diff(moment.unix(<number>lastestReview.date), 'months');
+      this.lastReviewDelay = this.lastReviewDelay < 0 ? 0 : this.lastReviewDelay;
+      this.percentCompleteDelay = 1 - (this.lastReviewDelay / this.interval);
+    }
+    if (this.mileage !== 0) {
+      this.lastReviewKm = this.mileage - (carMileage - lastestReview.mileage);
+      this.percentCompleteKm = 1 - (this.lastReviewKm / this.mileage);
+    }
+  }
+
+  getLastest?(): ReviewHistory {
+    this.history = this.history ? this.history : [];
+    return this.history.reduce((acc: ReviewHistory, current: ReviewHistory) => acc.date > current.date ? acc : current, new ReviewHistory());
   }
 }
