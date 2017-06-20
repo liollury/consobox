@@ -1,9 +1,9 @@
 <div class="main-info">
   <span class="title">Prochaine révision</span>
   <div>
-    <span class="large">Filtre à air</span>
+    <span class="large">{{criticalReview?.reviewType.name}}</span>
   </div>
-  <span class="trend great">dans 2mois ou 2000Km</span>
+  <span class="trend great">dans {{getReviewShortestDeadline(criticalReview)}}</span>
 </div>
 
 <md-list>

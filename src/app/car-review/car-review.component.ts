@@ -17,6 +17,7 @@ export class CarReviewComponent implements OnInit {
   @Input() car: Car;
   reviewCategories: Array<ReviewCategory>;
   reviewsMap: Map<ReviewCategory, Array<Review>>;
+  criticalReview: Review;
 
   constructor(private reviewService: ReviewService,
               private carService: CarsService,
@@ -38,6 +39,7 @@ export class CarReviewComponent implements OnInit {
           }
         });
       });
+      this.findCriticalestReview();
     });
   }
 
@@ -46,7 +48,7 @@ export class CarReviewComponent implements OnInit {
   }
 
   getReviewShortestDeadline(review: Review): string {
-    if (typeof review.percentCompleteDelay === 'undefined') {
+    if (!review || typeof review.percentCompleteDelay === 'undefined') {
       return 'Pas de données';
     }
     if (review.percentCompleteDelay > review.percentCompleteKm) {
@@ -57,7 +59,7 @@ export class CarReviewComponent implements OnInit {
   }
 
   getReviewShortestDeadlinePercent(review: Review): number {
-    if (typeof review.percentCompleteDelay === 'undefined') {
+    if (!review || typeof review.percentCompleteDelay === 'undefined') {
       return 0;
     }
     if (review.percentCompleteDelay > review.percentCompleteKm) {
@@ -77,6 +79,21 @@ export class CarReviewComponent implements OnInit {
       return 'orange'
     }else {
       return 'red'
+    }
+  }
+
+  findCriticalestReview() {
+    let reviews = [];
+    let criticalPercent = -1;
+    for (const arr of Array.from(this.reviewsMap.values())) {
+      reviews = [...reviews, ...arr];
+    }
+    for (const review of reviews) {
+      const percent = this.getReviewShortestDeadlinePercent(review);
+      if (percent > criticalPercent) {
+        this.criticalReview = review;
+        criticalPercent = percent;
+      }
     }
   }
 
