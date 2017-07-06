@@ -2,7 +2,7 @@ import {JsonProperty} from 'json-typescript-mapper';
 
 export class Conso {
   @JsonProperty('date')
-  date: number;
+  date: number | Date;
 
   @JsonProperty('volume')
   volume: number;

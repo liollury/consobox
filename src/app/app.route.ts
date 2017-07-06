@@ -8,6 +8,7 @@ import {CarAddReviewComponent} from './car-add-review/car-add-review.component';
 import {ReviewCategoriesResolver} from './resolves/review-categories.resolver';
 import {ReviewDetailsComponent} from './review-details/review-details.component';
 import {ReviewTypeResolver} from './resolves/review-type.resolver';
+import {CarAddConsoComponent} from './car-add-conso/car-add-conso.component';
 
 export const carSelect = {
   path : '',
@@ -19,6 +20,14 @@ export const carAddReview = {
   component: CarAddReviewComponent,
   resolve: {
     reviewCategories: ReviewCategoriesResolver
+  }
+};
+
+export const carAddConso = {
+  path: 'addConso',
+  component: CarAddConsoComponent,
+  resolve: {
+
   }
 };
 
@@ -43,7 +52,8 @@ export const carDetails = {
   children: [
     carTabs,
     carAddReview,
-    reviewDetails
+    reviewDetails,
+    carAddConso
   ],
   resolve: {
     car: CarResolver

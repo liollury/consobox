@@ -20,7 +20,6 @@
 
 <!--app-car-fab></app-car-fab-->
 <app-inbox-floating-button [position]="'br'" [effect]="'slidein-spring'" [method]="'click'" [activeIcon]="'clear'" [restingIcon]="'add'">
-  <app-inbox-floating-button-item [label]="'test'" [icon]="'add'" class="floating-child"></app-inbox-floating-button-item>
-  <app-inbox-floating-button-item [label]="'test'" [icon]="'add'" class="floating-child"></app-inbox-floating-button-item>
-  <app-inbox-floating-button-item [label]="'test'" [icon]="'add'" class="floating-child"></app-inbox-floating-button-item>
-</app-inbox-floating-button>jai encore rien
+  <app-inbox-floating-button-item [label]="'Ajouter un plein'" [icon]="'add'" class="floating-child" [routerLink]="['car', currentCarId(), 'addConso']"></app-inbox-floating-button-item>
+  <app-inbox-floating-button-item [label]="'Ajouter une dépense'" [icon]="'add'" class="floating-child"></app-inbox-floating-button-item>
+</app-inbox-floating-button>

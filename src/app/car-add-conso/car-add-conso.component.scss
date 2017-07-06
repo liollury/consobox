@@ -1,0 +1,19 @@
+
+
+.view {
+  padding: 15px;
+  .button-container {
+    display: flex;
+    padding: 20px 0;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    .full-width-input {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+}

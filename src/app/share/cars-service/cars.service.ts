@@ -8,9 +8,12 @@ import 'rxjs/add/observable/fromPromise';
 import {FuelService} from '../fuel-service/fuel.service';
 import {deserialize, serialize} from 'json-typescript-mapper';
 import {removeUndefined} from '../utils';
+import {Conso} from '../models/conso.interface';
 
 @Injectable()
 export class CarsService {
+  public currentCarId: string;
+
   constructor(private db: AngularFireDatabase,
               private authService: AuthService,
               private fuelService: FuelService) { }
@@ -33,6 +36,7 @@ export class CarsService {
   }
 
   getCar(id: string): Observable<Car> {
+    this.currentCarId = id;
     return this.authService.getUserDbObject().mergeMap((userRef: firebase.database.Reference) => {
       return Observable.fromPromise(userRef.child(`cars/${id}`).once('value'));
     }).map((carSnapshot: firebase.database.DataSnapshot) => {
@@ -54,6 +58,16 @@ export class CarsService {
   saveReviews(car: Car): Observable<firebase.database.ThenableReference> {
     return this.authService.getUserDbObject().mergeMap((userRef: firebase.database.Reference) => {
       return Observable.fromPromise(userRef.child(`cars/${car.id}/reviews`).set(removeUndefined(serialize(car.reviews))));
+    })
+  }
+
+  addConso(car: Car, conso: Conso): Observable<firebase.database.ThenableReference> {
+    car.consommations.push(conso);
+    car.mileage += conso.mileage;
+    return this.authService.getUserDbObject().mergeMap((userRef: firebase.database.Reference) => {
+      return Observable.fromPromise(userRef.child(`cars/${car.id}/consommations`).set(removeUndefined(serialize(car.consommations)))).mergeMap(() => {
+        return Observable.fromPromise(userRef.child(`cars/${car.id}/mileage`).set(car.mileage));
+      });
     })
   }
 }

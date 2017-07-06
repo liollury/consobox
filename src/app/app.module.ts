@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdSidenavModule,
-  MdListModule, MdTabsModule, MdSlideToggleModule, MdInputModule, MdDialogModule, MdDatepickerModule, MdNativeDateModule
+  MdListModule, MdTabsModule, MdSlideToggleModule, MdInputModule, MdDialogModule, MdDatepickerModule,
+  MdNativeDateModule, MdCheckboxModule
 } from '@angular/material';
 import { AppComponent } from './app.component';
 import { CarSelectComponent } from './car-select/car-select.component';
@@ -42,6 +43,7 @@ import {FormsModule} from '@angular/forms';
 import { ReviewDetailsComponent } from './review-details/review-details.component';
 import {ReviewTypeResolver} from './resolves/review-type.resolver';
 import { PerformReviewDialogComponent } from './perform-review-dialog/perform-review-dialog.component';
+import { CarAddConsoComponent } from './car-add-conso/car-add-conso.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { PerformReviewDialogComponent } from './perform-review-dialog/perform-re
     ReviewDetailsComponent,
     PerformReviewDialogComponent,
     /** Pipes **/
-    RoundPipe
+    RoundPipe,
+    CarAddConsoComponent
   ],
   entryComponents: [
     PerformReviewDialogComponent
@@ -75,6 +78,7 @@ import { PerformReviewDialogComponent } from './perform-review-dialog/perform-re
     MdToolbarModule,
     MdIconModule,
     MdInputModule,
+    MdCheckboxModule,
     MdSidenavModule,
     MdDialogModule,
     MdListModule,

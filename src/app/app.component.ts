@@ -4,6 +4,7 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import {TranslateService} from '@ngx-translate/core';
 import {languages} from '../translate/translation';
+import {CarsService} from './share/cars-service/cars.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ export class AppComponent implements OnInit {
   user: Observable<firebase.User>;
 
   constructor(public afAuth: AngularFireAuth,
-              translate: TranslateService) {
+              translate: TranslateService,
+              private carsService: CarsService) {
     this.user = afAuth.authState;
 
     for (const language in languages) {
@@ -41,5 +43,9 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.afAuth.auth.signOut();
+  }
+
+  currentCarId(): string {
+    return this.carsService.currentCarId;
   }
 }

@@ -1,0 +1,26 @@
+<div class="view">
+  <h3>Ajouter un plein</h3>
+  <div class="form">
+    <md-input-container class="full-width-input">
+      <input type="number" mdInput placeholder="Nombre de kilomètre" [(ngModel)]="conso.mileage">
+    </md-input-container>
+    <md-input-container class="full-width-input">
+      <input type="number" mdInput placeholder="Nombre de litres" [(ngModel)]="conso.volume">
+    </md-input-container>
+    <md-input-container class="full-width-input">
+      <input type="number" mdInput placeholder="Pirx au litre" [(ngModel)]="conso.price">
+    </md-input-container>
+    <md-input-container class="full-width-input">
+      <input mdInput [mdDatepicker]="picker" placeholder="Date" [(ngModel)]="conso.date">
+      <button mdSuffix [mdDatepickerToggle]="picker"></button>
+    </md-input-container>
+    <md-datepicker #picker></md-datepicker>
+
+    <md-checkbox class="full-width-input" [(ngModel)]="conso.full">Plein partiel</md-checkbox>
+    <md-checkbox class="full-width-input" [(ngModel)]="counterMileage">Relevé km total de la voiture</md-checkbox>
+  </div>
+  <div class="button-container">
+    <button md-button (click)="goBack()">Annuler</button>
+    <button md-raised-button (click)="saveChanges()">Valider</button>
+  </div>
+</div>
