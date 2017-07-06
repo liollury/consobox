@@ -17,7 +17,7 @@ export class CarConsoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.car.consommations.sort((consoA: Conso, consoB: Conso) => consoB.date - consoA.date);
+    this.car.consommations.sort((consoA: Conso, consoB: Conso) => <number>consoB.date - <number>consoA.date);
   }
 
 }

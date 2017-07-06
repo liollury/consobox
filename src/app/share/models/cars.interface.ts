@@ -65,7 +65,7 @@ export class Car {
   }
 
   sortConsoDesc() {
-    this.consommations = this.consommations.sort((a: Conso, b: Conso) => b.date - a.date);
+    this.consommations = this.consommations.sort((a: Conso, b: Conso) => <number>b.date - <number>a.date);
   }
 
   hasReview(reviewId: number): boolean {

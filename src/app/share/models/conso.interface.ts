@@ -1,7 +1,8 @@
 import {JsonProperty} from 'json-typescript-mapper';
+import {JsonDateConverter} from './review.interface';
 
 export class Conso {
-  @JsonProperty('date')
+  @JsonProperty({name: 'date', customConverter: new JsonDateConverter()})
   date: number | Date;
 
   @JsonProperty('volume')
