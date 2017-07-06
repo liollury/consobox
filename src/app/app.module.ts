@@ -32,7 +32,6 @@ import { LoginComponent } from './login/login.component';
 import {CarResolver} from './resolves/car.resolver';
 import {FuelResolver} from './resolves/fuel.resolver';
 import {FuelService} from './share/fuel-service/fuel.service';
-import {IdPipe} from './share/id-filter/id.filter';
 import {TranslateModule} from '@ngx-translate/core';
 import {ImportService} from './share/import-service/import.service';
 import {ConsoService} from './share/conso-service/conso.service';
@@ -42,7 +41,6 @@ import {ReviewService} from './share/review-service/review.service';
 import {FormsModule} from '@angular/forms';
 import { ReviewDetailsComponent } from './review-details/review-details.component';
 import {ReviewTypeResolver} from './resolves/review-type.resolver';
-import {IncrementComponent} from './share/increment/increment.component';
 import { PerformReviewDialogComponent } from './perform-review-dialog/perform-review-dialog.component';
 
 @NgModule({

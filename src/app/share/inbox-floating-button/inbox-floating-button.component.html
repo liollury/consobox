@@ -1,0 +1,11 @@
+<ul class="mfb-component--{{position}} mfb-{{effect}}" [attr.data-mfb-state]="menuState" [attr.data-mfb-toggle]="togglingMethod">
+  <li class="mfb-component__wrap">
+    <a (click)="clicked()" (mouseenter)="hovered()" (mouseleave)="hovered()" class="mfb-component__button--main" [attr.data-mfb-label]="label">
+      <md-icon role="img" class="material-icons mfb-component__main-icon--resting" aria-label="menu">{{resting}}</md-icon>
+      <md-icon role="img" class="material-icons mfb-component__main-icon--active" aria-label="menu">{{active}}</md-icon>
+    </a>
+    <ul class="mfb-component__list">
+      <ng-content></ng-content>
+    </ul>
+  </li>
+</ul>

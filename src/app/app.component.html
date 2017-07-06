@@ -18,4 +18,9 @@
   <button md-menu-item> Help </button>
 </md-menu>
 
-<app-car-fab></app-car-fab>
+<!--app-car-fab></app-car-fab-->
+<app-inbox-floating-button [position]="'br'" [effect]="'slidein-spring'" [method]="'click'" [activeIcon]="'clear'" [restingIcon]="'add'">
+  <app-inbox-floating-button-item [label]="'test'" [icon]="'add'" class="floating-child"></app-inbox-floating-button-item>
+  <app-inbox-floating-button-item [label]="'test'" [icon]="'add'" class="floating-child"></app-inbox-floating-button-item>
+  <app-inbox-floating-button-item [label]="'test'" [icon]="'add'" class="floating-child"></app-inbox-floating-button-item>
+</app-inbox-floating-button>jai encore rien
